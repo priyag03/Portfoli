@@ -1,8 +1,11 @@
 import React from 'react';
+import { useState } from 'react';
+import profilepic from './profilepic.png';
 import { Github, Linkedin, Mail, ExternalLink, ChevronDown } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 function App() {
+  const [tab, setTab] = React.useState(0);
   const scrollToContent = () => {
     const contentElement = document.getElementById('content');
     if (contentElement) {
@@ -158,7 +161,22 @@ function App() {
                   'React',
                   'Node.js',
                   'Python',
-                  'Java'
+                  'Java',
+                  'Spring Boot',
+                  'Distributed Systems',
+                  'MongoDB',
+                  'ASP.NET',
+                  'MySQL',
+                  'AWS',
+                  'Redis',
+                  'Docker',
+                  'Kubernetes',
+                  'Load Balancers',
+                  'Py Torch',
+                  'Tensor Flow',
+                  'NLP',
+                  'LLM'
+
                 ].map((tech) => (
                   <li key={tech} className="flex items-center">
                     <span className="text-teal-300 mr-2">▹</span> {tech}
@@ -169,7 +187,7 @@ function App() {
             <div className="relative group">
               <div className="relative z-10">
                 <img 
-                  src="https://via.placeholder.com/300"
+                  src={profilepic}
                   alt="Profile"
                   className="rounded grayscale hover:grayscale-0 transition-all"
                 />
@@ -179,32 +197,84 @@ function App() {
           </div>
         </motion.section>
 
-        {/* Experience Section */}
         <motion.section
-          {...fadeInUp}
-          viewport={{ once: true }}
-          className="mb-32"
-          id="experience"
-        >
-          <h2 className="flex items-center text-2xl font-bold text-slate-200 mb-8">
-            <span className="text-teal-300 font-mono mr-2">02.</span> Experience
-            <div className="h-[1px] bg-slate-700 flex-grow ml-4"></div>
-          </h2>
-          <div className="bg-slate-800/30 rounded-lg p-6 hover:bg-slate-800/50 transition-colors">
-            <h3 className="text-xl font-semibold text-slate-200">Software Engineer Intern</h3>
-            <p className="text-teal-300 font-mono mb-4">Stony Brook University • May 2023 - Present</p>
-            <ul className="space-y-4">
-              <li className="flex items-start">
-                <span className="text-teal-300 mr-2 mt-1.5">▹</span>
-                <span>Developed and maintained web applications using React and Node.js</span>
-              </li>
-              <li className="flex items-start">
-                <span className="text-teal-300 mr-2 mt-1.5">▹</span>
-                <span>Collaborated with cross-functional teams to deliver high-quality software solutions</span>
-              </li>
-            </ul>
-          </div>
-        </motion.section>
+  {...fadeInUp}
+  viewport={{ once: true }}
+  className="mb-32"
+  id="experience"
+>
+  <h2 className="flex items-center text-2xl font-bold text-slate-200 mb-8">
+    <span className="text-teal-300 font-mono mr-2">02.</span> Where I’ve Worked
+    <div className="h-[1px] bg-slate-700 flex-grow ml-4"></div>
+  </h2>
+
+  <div className="flex flex-col md:flex-row gap-8">
+    {/* Left tab nav */}
+    <div className="md:w-1/4">
+      <ul className="flex md:flex-col gap-4 font-mono text-sm text-slate-400">
+        {['RealPage', 'Drivenest', 'SBU'].map((company, index) => (
+          <li
+            key={company}
+            onClick={() => setTab(index)}
+            className={`cursor-pointer px-4 py-2 rounded border-l-2 ${
+              tab === index ? 'border-teal-300 text-teal-300 bg-slate-800' : 'border-transparent hover:text-teal-300'
+            }`}
+          >
+            {company}
+          </li>
+        ))}
+      </ul>
+    </div>
+
+    {/* Right job detail */}
+    <div className="md:w-3/4">
+      {tab === 0 && (
+        <div>
+          <h3 className="text-xl font-semibold text-slate-200">
+            Software Developer <span className="text-teal-300">@ RealPage</span>
+          </h3>
+          <p className="text-teal-300 font-mono mb-4">August 2023 – July 2024</p>
+          <ul className="space-y-4 text-slate-400">
+          <li>▹ Migrated a legacy invoice processing system to a modular architecture using ASP.NET and React, enhancing performance and maintainability.</li>
+  <li>▹ Built RESTful APIs using .NET Core with asynchronous programming, middleware, and secure authentication.</li>
+  <li>▹ Reduced execution time by <span className="text-teal-300 font-medium">40%</span> by optimizing SQL queries and database indexing.</li>
+  <li>▹ Reduced post-release bugs by <span className="text-teal-300 font-medium">25%</span> through collaboration with QA and DevOps on streamlined deployments.</li>
+  <li>▹ Ensured data accuracy by implementing validations and integrity checks, cutting inconsistencies by <span className="text-teal-300 font-medium">15%</span>.</li>
+  <li>▹ Integrated OAuth and JWT-based authentication to strengthen user and service security.</li>
+  <li>▹ Applied caching strategies using Redis to lower API latency and boost scalability.</li>
+          </ul>
+        </div>
+      )}
+      {tab === 1 && (
+        <div>
+          <h3 className="text-xl font-semibold text-slate-200">
+            Software Engineer Inter<span className="text-teal-300">@ Drivenest</span>
+          </h3>
+          <p className="text-teal-300 font-mono mb-4">Jan 2022 – June 2023</p>
+          <ul className="space-y-4 text-slate-400">
+          <li>▹ Migrated a Java-based on-premises infrastructure to AWS Cloud using Kubernetes, Elasticsearch, and Python.</li>
+  <li>▹ Managed AWS services including CloudFormation, S3, Lambda, and Elastic Clusters for production-grade scalability.</li>
+  <li>▹ Automated CI/CD pipelines using Screwdriver, reducing deployment time by <span className="text-teal-300 font-medium">40%</span>.</li>
+  <li>▹ Resolved component dependencies, leading to a <span className="text-teal-300 font-medium">90%</span> reduction in system errors and improved service stability.</li>
+          </ul>
+        </div>
+      )}
+      {tab === 2 && (
+        <div>
+          <h3 className="text-xl font-semibold text-slate-200">
+            Research Assistant <span className="text-teal-300">@ SBU</span>
+          </h3>
+          <p className="text-teal-300 font-mono mb-4">Jan 2024 – Present</p>
+          <ul className="space-y-4 text-slate-400">
+            <li>▹ Working on prospectus document classification using RoBERTa and OpenAI’s GPT models.</li>
+            <li>▹ In collaboration with Broadridge Financial Solutions and Dr. IV Ramakrishnan.</li>
+          </ul>
+        </div>
+      )}
+    </div>
+  </div>
+</motion.section>
+
 
         {/* Projects Section */}
         <motion.section
